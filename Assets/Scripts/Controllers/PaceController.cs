@@ -178,7 +178,6 @@ public class PaceController : GameController {
 	void DetectFallen () {
 		if (player.currentSpeed < 1f) {
 			player.fallen = true;
-			player.Save();
 		}
 	}
 }

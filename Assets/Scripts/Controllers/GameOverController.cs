@@ -15,6 +15,7 @@ public class GameOverController : GameController {
 	// Update is called once per frame
 	void Update () {
 		if (player.fallen) {
+			player.Save();
 			gameOverPanel.SetActive(true);
 		}
 	}

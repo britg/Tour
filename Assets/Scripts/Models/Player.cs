@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class Player : GameModel {
+
+	public enum Lane {
+		Right,
+		Left
+	}
+
 	static string BEST_DISTANCE = "bestdistance";
 	static string COINS = "coins";
 
@@ -36,6 +42,8 @@ public class Player : GameModel {
 	public float minBoost;
 
 	public float falsePedalPenalty;
+
+	public Lane currentLane;
 
 	public bool fallen { get; set; }
 
