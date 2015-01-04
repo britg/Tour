@@ -15,6 +15,6 @@ public class SpeedView : GameView {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = string.Format("{0}", player.currentSpeed);
+		text.text = string.Format("{0}", player.currentSpeed.ToString("F1"));
 	}
 }

@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class DistanceView : GameView {
+public class BestDistanceView : GameView {
 
 	Player player;
 
@@ -15,6 +15,6 @@ public class DistanceView : GameView {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = string.Format ("{0}", player.currentDistance.ToString("F2"));
+		text.text = string.Format ("{0}", player.bestDistance.ToString("F2"));
 	}
 }
