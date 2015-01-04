@@ -7,7 +7,7 @@ public abstract class GameController : GameBehaviour {
 		if (player.fallen) {
 			return;
 		}
-		var newPos = transform.position + Vector3.back * Time.deltaTime * player.currentSpeed / 10f;
+		var newPos = transform.position + Vector3.back * Time.deltaTime * player.currentSpeed / 5f;
 		transform.position = newPos;
 	}
 

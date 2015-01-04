@@ -20,9 +20,16 @@ public class PaceController : GameController {
 
 	List<GameObject> strokeObjs;
 
+	public GameObject leftGood;
+	public GameObject leftBad;
+	public GameObject rightGood;
+	public GameObject rightBad;
+
 
 	// Use this for initialization
+	float pixelAdjust;
 	void Start () {
+		pixelAdjust = Screen.height/736f;
 		Application.targetFrameRate = 60;
 		player = GetPlayer();
 		player.Load();
@@ -68,7 +75,7 @@ public class PaceController : GameController {
 	void InitStroke (GameObject strokeObj, Stroke.Pedal pedal) {
 		strokeObj.transform.SetParent(strokeContainer.transform, false);
 		Stroke stroke = GetStroke(strokeObj);
-		stroke.speed = strokeSpeed;
+		stroke.speed = strokeSpeed * pixelAdjust;
 		stroke.pedal = pedal;
 		strokeObjs.Add(strokeObj);
 		lastPedal = pedal;
@@ -155,6 +162,7 @@ public class PaceController : GameController {
 					float acc = accuracy(hit);
 					player.Boost(acc);
 					CullStroke (strokeObj);
+					Good(pedal);
 					return;
 				}
 			}
@@ -162,6 +170,32 @@ public class PaceController : GameController {
 
 		// did not hit in zone
 		player.PedalPenalty();
+		Bad(pedal);
+	}
+
+	void ResetMessage () {
+		rightGood.SetActive(false);
+		leftGood.SetActive(false);
+		rightBad.SetActive(false);
+		leftBad.SetActive(false);
+	}
+
+	void Good (Stroke.Pedal pedal) {
+		ResetMessage();
+		if (pedal == Stroke.Pedal.Right) {
+			rightGood.SetActive(true);
+		} else {
+			leftGood.SetActive(true);
+		}
+	}
+
+	void Bad (Stroke.Pedal pedal) {
+		ResetMessage();
+		if (pedal == Stroke.Pedal.Right) {
+			rightBad.SetActive(true);
+		} else {
+			leftBad.SetActive(true);
+		}
 	}
 
 	void CalcDistance () {
