@@ -32,17 +32,16 @@ public class LaneController : GameController {
 		}
 	}
 
-	void TransitionRight () {
+	public void TransitionRight () {
 		iTween.MoveTo(gameObject, iTween.Hash("position", rightLane, "time", switchTime));
 	}
 
-	void TransitionLeft () {
+	public void TransitionLeft () {
 		iTween.MoveTo(gameObject, iTween.Hash("position", leftLane, "time", switchTime));
 	}
 
 	void DetectInput () {
-		if (Input.GetKeyDown(KeyCode.UpArrow) || 
-		    (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended)) {
+		if (Input.GetKeyDown(KeyCode.UpArrow)) {
 			SwitchLanes();
 		}
 	}
